@@ -4,6 +4,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
+
+import com.jeesite.autoconfigure.sys.MsgAutoConfiguration;
+import com.jeesite.common.lang.StringUtils;
 import com.jeesite.common.mybatis.annotation.JoinTable;
 import com.jeesite.common.mybatis.annotation.JoinTable.Type;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -14,6 +17,7 @@ import com.jeesite.common.entity.DataEntity;
 import com.jeesite.common.mybatis.annotation.Column;
 import com.jeesite.common.mybatis.annotation.Table;
 import com.jeesite.common.mybatis.mapper.query.QueryType;
+import com.jeesite.common.shiro.realms.IIiiiiiIiiii;
 
 /**
  * 家庭成员Entity
@@ -31,6 +35,7 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 		@Column(name="marriage", attrName="marriage", label="已婚"),
 		@Column(name="levers", attrName="levers", label="对象"),
 		@Column(name="birthday", attrName="birthday", label="出生日期", isUpdateForce=true),
+		@Column(name="avatar", attrName = "avatar", label = "头像"),
 		@Column(name="user_id", attrName="userId", label="用户", isInsert=true, isUpdate=false, isQuery=true),
 		@Column(includeEntity=DataEntity.class),
 	}, orderBy="a.create_date DESC",
@@ -52,6 +57,8 @@ public class FamilyMember extends DataEntity<FamilyMember> {
 	private String fatherName;    // 父亲姓名
 	private String motherName;    //母亲姓名
 	private String leversName;    // 伴侣姓名
+	private String avatar;    // 头像
+	private String avatarBase64;
 	private List<FamilyMemberProperties> familyMemberPropertiesList = ListUtils.newArrayList();		// 子表列表
 	
 	public FamilyMember() {
@@ -175,6 +182,30 @@ public class FamilyMember extends DataEntity<FamilyMember> {
 
 	public void setLeversName(String leversName) {
 		this.leversName = leversName;
+	}
+
+	public String getAvatarUrl(){
+		if (StringUtils.isNotBlank(this.avatar)) {
+			return (new StringBuilder()).insert(0, "/ctxPath").append(this.avatar).toString();
+		} else {
+			return "";
+		}
+	}
+
+	public String getAvatarBase64() {
+		return avatarBase64;
+	}
+
+	public void setAvatarBase64(String avatarBase64) {
+		this.avatarBase64 = avatarBase64;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	@Valid

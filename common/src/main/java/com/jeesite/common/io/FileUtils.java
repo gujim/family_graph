@@ -444,8 +444,8 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
 	
 	/**
 	 * 根据图片Base64写入图片文件
+	 *
 	 * @param fileName 写入的文件路径及文件名
-	 * @param imageBase64 图片Base64字符串
 	 */
 	public static void writeToFileByImageBase64(String fileName, String imageBase64){
 		String base64 = StringUtils.substringAfter(imageBase64, "base64,");

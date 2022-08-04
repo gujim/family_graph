@@ -43,3 +43,8 @@ CREATE TABLE family_member_properties
 	remarks varchar(500) COMMENT '备注信息',
 	PRIMARY KEY (id)
 ) COMMENT = '成员属性';
+
+-- 2022-8-4 修改表结构，family_member 添加头像字段
+alter table family_member add avatar varchar(1000) COMMENT '头像';
+
+alter table family_member drop avatar; alter column avatar varchar(1000) COMMENT '头像';

@@ -1,9 +1,17 @@
 package top.gujm.modules.family.service;
 
 import java.util.List;
+import java.util.UUID;
 
+import com.jeesite.common.config.Global;
+import com.jeesite.common.io.FileUtils;
+import com.jeesite.common.lang.StringUtils;
 import com.jeesite.common.mybatis.mapper.MapperHelper;
 import com.jeesite.common.mybatis.mapper.query.QueryType;
+import com.jeesite.common.shiro.realms.IIiiiiiIiiIi;
+import com.jeesite.common.shiro.realms.IiiiIiiiiIII;
+import com.jeesite.modules.sys.dao.UserDao;
+import com.jeesite.modules.sys.entity.User;
 import com.jeesite.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,6 +112,11 @@ public class FamilyMemberService extends CrudService<FamilyMemberDao, FamilyMemb
 	@Override
 	@Transactional
 	public void save(FamilyMember familyMember) {
+		if(StringUtils.isNotBlank(familyMember.getAvatarBase64())) {
+			String path = "avatar/" + UUID.randomUUID().toString().replaceAll("-", "") + "." + FileUtils.getFileExtensionByImageBase64(familyMember.getAvatarBase64());
+			FileUtils.writeToFileByImageBase64(Global.getUserfilesBaseDir(path), familyMember.getAvatarBase64());
+			familyMember.setAvatar("/userfiles/" + path);
+		}
 		familyMember.setUserId(UserUtils.getUser().getId());
 		super.save(familyMember);
 		// 保存上传图片

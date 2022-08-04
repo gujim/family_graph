@@ -13,11 +13,11 @@
     <groupId>top.gujm</groupId>
     <artifactId>jeesite-family</artifactId>
     <dependencies>
+        <!-- Framework -->
         <dependency>
             <groupId>com.jeesite</groupId>
             <artifactId>jeesite-framework</artifactId>
-            <version>5.0.2-SNAPSHOT</version>
-            <scope>compile</scope>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 
