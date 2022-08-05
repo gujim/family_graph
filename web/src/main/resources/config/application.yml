@@ -814,10 +814,10 @@ file:
   enabled: true
   
 #  # 文件上传根路径，设置路径中不允许包含“userfiles”，在指定目录中系统会自动创建userfiles目录，如果不设置默认为contextPath路径
-#  #baseDir: D:/jeesite
+  baseDir: D:/GuJimeng/WorkSpace/file/family_graph
 #  
 #  # 上传文件的相对路径（支持：yyyy, MM, dd, HH, mm, ss, E）
-#  uploadPath: '{yyyy}{MM}/'
+  uploadPath: '{yyyy}{MM}/'
 #  
 #  # 上传单个文件最大字节（500M），在这之上还有 > Tomcat限制 > Nginx限制，等，此设置会覆盖 spring.http.multipart.maxFileSize 设置
 #  maxFileSize: '500*1024*1024'
